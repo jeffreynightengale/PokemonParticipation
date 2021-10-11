@@ -22,6 +22,7 @@ namespace Pokemon
     /// </summary>
     public partial class MainWindow : Window
     {
+        private PokemonAttributes poke;
         public MainWindow()
         {
             InitializeComponent();
@@ -30,18 +31,27 @@ namespace Pokemon
 
             using (var client = new HttpClient())
             {
-                string json = client.GetStringAsync("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1200").Result;
+                HttpResponseMessage result = client.GetAsync("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1200").Result;
 
-                poke = JsonConvert.DeserializeObject<PokemonList>(json);
-            }
+                if (result.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    string json = result.Content.ReadAsStringAsync().Result;
 
-            foreach (var p in poke.results)
-            {
-                PokemonCBO.Items.Add(p);
+
+                    poke = JsonConvert.DeserializeObject<PokemonList>(json);
+                    foreach (var p in poke.results)
+                    {
+                        PokemonCBO.Items.Add(p);
+                    }
+                }
+                else
+                {
+                     MessageBox.Show($"ERROR:{result.StatusCode}");
+                }
             }
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void PokemonCBO_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Results selected = (Results)PokemonCBO.SelectedItem;
 
@@ -52,8 +62,12 @@ namespace Pokemon
                 PokemonAttributes poke = JsonConvert.DeserializeObject<PokemonAttributes>(pic);
 
                 Image.Source = new BitmapImage(new Uri(poke.sprites.front_default));
-                Img.Source = new BitmapImage(new Uri(poke.sprites.back_default));
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Image.Source = new BitmapImage(new Uri(poke.sprites.back_default));
         }
     }
     

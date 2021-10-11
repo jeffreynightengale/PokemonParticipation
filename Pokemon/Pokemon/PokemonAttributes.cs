@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokemon
 {
-    class PokemonAttributes
+    public class PokemonAttributes
     {
         public string weight { get; set; }
         public string height { get; set; }

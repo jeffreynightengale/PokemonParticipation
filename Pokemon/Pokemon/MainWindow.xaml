@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="PokemonCBO" HorizontalAlignment="Left" Margin="109,128,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="140,214,0,0" VerticalAlignment="Top" Height="43" Width="89" Click="Button_Click_1"/>
-        <Image x:Name="Image" HorizontalAlignment="Left" Height="111" Margin="533,128,0,0" VerticalAlignment="Top" Width="222"/>
+        <ComboBox x:Name="PokemonCBO" HorizontalAlignment="Left" Margin="109,128,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="PokemonCBO_SelectionChanged"/>
+        <Button x:Name="Toggle" Content="Button" HorizontalAlignment="Left" Margin="140,214,0,0" VerticalAlignment="Top" Height="43" Width="89" Click="Button_Click"/>
+        <Image x:Name="Image" HorizontalAlignment="Left" Height="189" Margin="352,139,0,0" VerticalAlignment="Top" Width="217"/>
         <Image x:Name="Img" HorizontalAlignment="Left" Height="135" Margin="533,257,0,0" VerticalAlignment="Top" Width="252"/>
 
     </Grid>

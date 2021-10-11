@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Pokemon
 {
-    class PokemonList
+    public class PokemonList
     {
         public List<Results> results { get; set; }
     }
