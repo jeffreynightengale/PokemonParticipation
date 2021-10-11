@@ -23,6 +23,7 @@ namespace Pokemon
     public partial class MainWindow : Window
     {
         private PokemonAttributes poke;
+        bool showfront = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -68,6 +69,17 @@ namespace Pokemon
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Image.Source = new BitmapImage(new Uri(poke.sprites.back_default));
+
+            if (showfront)
+            {
+                Image.Source = new BitmapImage(new Uri(poke.sprites.front_default));
+                showfront = false;
+            }
+            else
+            {
+                Image.Source = new BitmapImage(new Uri(poke.sprites.back_default));
+                showfront = true;
+            }
         }
     }
     
